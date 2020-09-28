@@ -10,7 +10,8 @@ app.get("/", (req, res) => {
 })
 
 app.get("/api/whoami", (req, res) => {
-    res.send({ip: req.headers['x-forwarded-for'] || req.connection.remocteAddress})
+  console.log(req.headers)
+    res.send({ipaddress: req.headers['x-forwarded-for'] || req.connection.remoteAddress, language: req.headers['accept-language'], software: req.headers['user-agent']})
 })
 
 const listener = app.listen(process.env.PORT || 3000, () => {
